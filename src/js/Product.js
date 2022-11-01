@@ -1,5 +1,5 @@
-import editIcon from '../svg/edit-icon.svg';
-import deleteIcon from '../svg/delete-icon.svg';
+import editIcon from '../pic/edit-icon.png';
+import deleteIcon from '../pic/delete-icon.png';
 
 export default class Product {
   constructor(name, price) {
@@ -12,8 +12,8 @@ export default class Product {
     <div class="cell product-name">${this.name}</div>
     <div class="cell product-price">${String(this.price)}</div>
     <div class="cell product-action">
-      <img class="edit" src="${editIcon}" alt="Редактировать" title="Редактировать">
-      <img class="delete" src="${deleteIcon}" alt="Закрыть" title="Закрыть">
+      <img class="product-action-img edit" src="${editIcon}" alt="Редактировать" title="Редактировать">
+      <img class="product-action-img delete" src="${deleteIcon}" alt="Закрыть" title="Закрыть">
     </div>
     `;
   }

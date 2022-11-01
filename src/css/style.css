@@ -41,12 +41,11 @@
   color: #fff;
 }
 
-.btn-add:hover {
+.btn-add:hover, .btn-popup:hover {
   background-color: orange;
 }
 
 .product-table {
-  /* min-width: 275px; */
   margin-top: 10px;
   border: 1px solid black;
   border-radius: 10px;
@@ -71,9 +70,17 @@
 }
 
 .cell {
-  display: flex;
   flex: 1;
   padding: 5px;
+}
+
+.product-action {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.product-action-img {
+  height: 20px;
 }
 
 .popup {
@@ -124,11 +131,3 @@
 .btn-popup:nth-child(n+2) {
   margin-left: 20px;
 }
-
-/* .edit {
-  background-image: url("svg/edit-icon.svg");
-}
-
-.close {
-  background-image: url("svg/close-icon.svg");
-} */
