@@ -2,7 +2,6 @@ import Product from './Product';
 
 export default class Popup {
   constructor(element) {
-    // this.popupBlocks = ['name', 'price'];
     this.parentEl = element;
     this.element = this.create();
 
@@ -29,6 +28,7 @@ export default class Popup {
     `;
   }
 
+  // eslint-disable-next-line class-methods-use-this
   create() {
     const popup = document.createElement('form');
     popup.classList.add('popup');
@@ -42,28 +42,35 @@ export default class Popup {
   show() {
     this.parentEl.appendChild(this.element);
 
-    // const buttonSave = this.element.querySelector('.btn-popup-save');
     const buttonClose = this.element.querySelector('.btn-popup-close');
 
     this.element.addEventListener('submit', this.onButtonSave);
     buttonClose.addEventListener('click', this.onButtonClose);
   }
 
-  close() {
+  hide() {
     this.element.remove();
   }
 
   onButtonSave(e) {
     e.preventDefault();
-    const productName = document.getElementById('input-name').value;
-    const productPrice = Number(document.getElementById('input-price').value);
 
-    this.product = new Product(productName, productPrice);
-    this.product.addToList();
-    this.close();
+    const newName = document.getElementById('input-name').value;
+    const newPrice = Number(document.getElementById('input-price').value);
+
+    if (this.product) {
+      this.product.name = newName;
+      this.product.price = newPrice;
+      this.product.edit();
+    } else {
+      this.product = new Product(newName, newPrice, this);
+      this.product.addToList();
+    }
+
+    this.hide();
   }
 
   onButtonClose() {
-    this.close();
+    this.hide();
   }
 }

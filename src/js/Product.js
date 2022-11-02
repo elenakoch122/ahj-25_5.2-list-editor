@@ -2,18 +2,26 @@ import editIcon from '../pic/edit-icon.png';
 import deleteIcon from '../pic/delete-icon.png';
 
 export default class Product {
-  constructor(name, price) {
+  constructor(name, price, popup) {
     this.name = name;
     this.price = price;
+    this.popup = popup;
+
+    this.onEdit = this.onEdit.bind(this);
+    this.onDelete = this.onDelete.bind(this);
   }
 
   static get markup() {
     return `
-    <div class="cell product-name">${this.name}</div>
-    <div class="cell product-price">${String(this.price)}</div>
+    <div class="cell product-name"></div>
+    <div class="cell product-price"></div>
     <div class="cell product-action">
-      <img class="product-action-img edit" src="${editIcon}" alt="Редактировать" title="Редактировать">
-      <img class="product-action-img delete" src="${deleteIcon}" alt="Закрыть" title="Закрыть">
+      <div class="product-action-wrap">
+        <img class="product-action-img edit" src="${editIcon}" alt="Редактировать" title="Редактировать">
+      </div>
+      <div class="product-action-wrap">
+        <img class="product-action-img delete" src="${deleteIcon}" alt="Закрыть" title="Закрыть">
+      </div>
     </div>
     `;
   }
@@ -25,6 +33,12 @@ export default class Product {
     const productBody = Product.markup;
     product.insertAdjacentHTML('beforeend', productBody);
 
+    const productName = product.querySelector('.product-name');
+    productName.textContent = this.name;
+
+    const productPrice = product.querySelector('.product-price');
+    productPrice.textContent = this.price;
+
     return product;
   }
 
@@ -35,15 +49,20 @@ export default class Product {
     const editBtn = this.element.querySelector('.edit');
     const deleteBtn = this.element.querySelector('.delete');
 
-    editBtn.addEventListener('click', this.edit);
-    deleteBtn.addEventListener('click', this.delete);
+    editBtn.addEventListener('click', this.onEdit);
+    deleteBtn.addEventListener('click', this.onDelete);
   }
 
   edit() {
-
+    this.element.querySelector('.product-name').textContent = this.name;
+    this.element.querySelector('.product-price').textContent = this.price;
   }
 
-  delete() {
+  onEdit() {
+    this.popup.show();
+  }
 
+  onDelete() {
+    this.element.remove();
   }
 }
