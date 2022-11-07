@@ -59,7 +59,6 @@
 .products {
   background-color: green;
   border-radius: 10px;
-  padding: 5px 0;
 }
 
 .table-header, .product {
@@ -108,8 +107,8 @@
   right: 3%;
 }
 
-.popup-block:nth-child(n+2) {
-  margin-top: 10px;
+.popup-block {
+  margin-bottom: 30px;
 }
 
 .input {
@@ -122,13 +121,12 @@
 }
 
 .input:focus {
-  outline: 1px solid #b59f5b;
+  outline: 1px solid #5b66b5;
 }
 
 .popup-footer {
   display: flex;
   justify-content: flex-end;
-  margin-top: 20px;
 }
 
 .btn-popup {
@@ -145,4 +143,9 @@
 
 .btn-popup:nth-child(n+2) {
   margin-left: 20px;
+}
+
+.tooltip {
+  color: red;
+  position: absolute;
 }
