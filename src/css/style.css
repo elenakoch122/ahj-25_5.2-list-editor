@@ -45,11 +45,11 @@
   background-color: orange;
 }
 
-.product-table {
+.product-list {
   margin-top: 10px;
 }
 
-.table-header {
+.list-header {
   font-weight: bold;
   background-color: orange;
   border-radius: 10px;
@@ -61,7 +61,7 @@
   border-radius: 10px;
 }
 
-.table-header, .product {
+.list-header, .product {
   display: flex;
   justify-content: space-around;
 }

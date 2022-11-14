@@ -1,9 +1,11 @@
 import Product from './Product';
 import Validator from './Validator';
+import Widget from './Widget';
 
 export default class Popup {
   constructor(element) {
-    this.parentEl = element;
+    // this.parentEl = element;
+    this.parentEl = element.widget;
     this.element = this.create();
     this.validator = new Validator();
 
@@ -71,6 +73,7 @@ export default class Popup {
       } else {
         this.product = new Product(newName, newPrice, this);
         this.product.addToList();
+        Widget.saveProduct(this.product);
       }
 
       this.hide();
