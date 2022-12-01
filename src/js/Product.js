@@ -6,6 +6,7 @@ export default class Product {
     this.name = name;
     this.price = price;
     this.popup = popup;
+    this.id = performance.now();
 
     this.onEdit = this.onEdit.bind(this);
     this.onDelete = this.onDelete.bind(this);
@@ -29,6 +30,7 @@ export default class Product {
   create() {
     const product = document.createElement('div');
     product.classList.add('product');
+    product.setAttribute('data-id', this.id);
 
     const productBody = Product.markup;
     product.insertAdjacentHTML('beforeend', productBody);
@@ -59,7 +61,7 @@ export default class Product {
   }
 
   onEdit() {
-    this.popup.show();
+    this.popup.show(this.id);
   }
 
   onDelete() {

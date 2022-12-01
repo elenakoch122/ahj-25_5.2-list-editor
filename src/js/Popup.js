@@ -1,16 +1,17 @@
 import Product from './Product';
 import Validator from './Validator';
-import Widget from './Widget';
 
 export default class Popup {
-  constructor(element) {
-    // this.parentEl = element;
-    this.parentEl = element.widget;
+  constructor(productList) {
+    this.productList = productList;
+    this.parentEl = document.querySelector('.widget');
     this.element = this.create();
+    this.inputName = this.element.querySelector('#input-name');
+    this.inputPrice = this.element.querySelector('#input-price');
     this.validator = new Validator();
 
     this.onButtonSave = this.onButtonSave.bind(this);
-    this.onButtonClose = this.onButtonClose.bind(this);
+    this.onButtonCancel = this.onButtonCancel.bind(this);
   }
 
   static get markup() {
@@ -44,14 +45,21 @@ export default class Popup {
     return popup;
   }
 
-  show() {
+  show(id = null) {
     this.parentEl.appendChild(this.element);
 
-    const buttonClose = this.element.querySelector('.btn-popup-close');
+    const buttonCancel = this.element.querySelector('.btn-popup-close');
     this.inputArr = this.element.querySelectorAll('.input');
 
+    if (id) {
+      this.editProduct = this.productList.products.find((p) => p.id === id);
+
+      this.inputName.value = this.editProduct.name;
+      this.inputPrice.value = this.editProduct.price;
+    }
+
     this.element.addEventListener('submit', this.onButtonSave);
-    buttonClose.addEventListener('click', this.onButtonClose);
+    buttonCancel.addEventListener('click', this.onButtonCancel);
     this.inputArr.forEach((i) => i.addEventListener('input', this.validator.onCheck));
   }
 
@@ -66,14 +74,17 @@ export default class Popup {
       const newName = document.getElementById('input-name').value;
       const newPrice = Number(document.getElementById('input-price').value);
 
-      if (this.product) {
-        this.product.name = newName;
-        this.product.price = newPrice;
-        this.product.edit();
+      if (this.editProduct) {
+        this.editProduct.name = newName;
+        this.editProduct.price = newPrice;
+        this.editProduct.edit();
+        this.editProduct = null;
       } else {
-        this.product = new Product(newName, newPrice, this);
-        this.product.addToList();
-        Widget.saveProduct(this.product);
+        const product = new Product(newName, newPrice, this);
+        product.addToList();
+        this.productList.products.push(product);
+        this.inputName.value = '';
+        this.inputPrice.value = '';
       }
 
       this.hide();
@@ -82,7 +93,7 @@ export default class Popup {
     }
   }
 
-  onButtonClose() {
+  onButtonCancel() {
     this.hide();
   }
 }

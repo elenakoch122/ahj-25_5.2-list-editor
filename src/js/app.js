@@ -1,11 +1,15 @@
+import ProductList from './ProductList';
+import Popup from './Popup';
 import Widget from './Widget';
 
-const widget = new Widget();
+const productList = new ProductList();
+const popup = new Popup(productList);
+const widget = new Widget(popup);
+
 widget.init();
 
 window.addEventListener('beforeunload', () => {
-  const { products } = Widget;
-  localStorage.setItem('products', JSON.stringify(products));
+  localStorage.setItem('products', JSON.stringify(productList.products));
 });
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -19,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   if (products) {
-    products.forEach((p) => Widget.saveProduct(p));
-    widget.drawProducts();
+    productList.products = products;
+    widget.drawProducts(products);
   }
 });
