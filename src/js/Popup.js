@@ -2,8 +2,8 @@ import Product from './Product';
 import Validator from './Validator';
 
 export default class Popup {
-  constructor(productList) {
-    this.productList = productList;
+  constructor(state) {
+    this.state = state;
     this.parentEl = document.querySelector('.widget');
     this.element = this.create();
     this.inputName = this.element.querySelector('#input-name');
@@ -52,39 +52,33 @@ export default class Popup {
     this.inputArr = this.element.querySelectorAll('.input');
 
     if (id) {
-      this.editProduct = this.productList.products.find((p) => p.id === id);
+      this.editProduct = this.state.products.find((p) => p.id === id);
 
       this.inputName.value = this.editProduct.name;
       this.inputPrice.value = this.editProduct.price;
     }
 
-    this.element.addEventListener('submit', this.onButtonSave);
     buttonCancel.addEventListener('click', this.onButtonCancel);
     this.inputArr.forEach((i) => i.addEventListener('input', this.validator.onCheck));
   }
 
   hide() {
+    this.inputName.value = '';
+    this.inputPrice.value = '';
+    this.editProduct = null;
     this.element.remove();
   }
 
   onButtonSave(e) {
-    e.preventDefault();
-
     if (e.target.checkValidity()) {
-      const newName = document.getElementById('input-name').value;
-      const newPrice = Number(document.getElementById('input-price').value);
-
       if (this.editProduct) {
-        this.editProduct.name = newName;
-        this.editProduct.price = newPrice;
+        this.editProduct.name = this.inputName.value;
+        this.editProduct.price = Number(this.inputPrice.value);
         this.editProduct.edit();
-        this.editProduct = null;
       } else {
-        const product = new Product(newName, newPrice, this);
+        const product = new Product(this.inputName.value, Number(this.inputPrice.value));
         product.addToList();
-        this.productList.products.push(product);
-        this.inputName.value = '';
-        this.inputPrice.value = '';
+        this.state.products.push(product);
       }
 
       this.hide();

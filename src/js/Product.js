@@ -2,14 +2,10 @@ import editIcon from '../pic/edit-icon.png';
 import deleteIcon from '../pic/delete-icon.png';
 
 export default class Product {
-  constructor(name, price, popup) {
+  constructor(name, price) {
     this.name = name;
     this.price = price;
-    this.popup = popup;
     this.id = performance.now();
-
-    this.onEdit = this.onEdit.bind(this);
-    this.onDelete = this.onDelete.bind(this);
   }
 
   static get markup() {
@@ -47,24 +43,10 @@ export default class Product {
   addToList() {
     this.element = this.create();
     document.querySelector('.products').appendChild(this.element);
-
-    const editBtn = this.element.querySelector('.edit');
-    const deleteBtn = this.element.querySelector('.delete');
-
-    editBtn.addEventListener('click', this.onEdit);
-    deleteBtn.addEventListener('click', this.onDelete);
   }
 
   edit() {
     this.element.querySelector('.product-name').textContent = this.name;
     this.element.querySelector('.product-price').textContent = this.price;
-  }
-
-  onEdit() {
-    this.popup.show(this.id);
-  }
-
-  onDelete() {
-    this.element.remove();
   }
 }

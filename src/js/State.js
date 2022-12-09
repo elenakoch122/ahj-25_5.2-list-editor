@@ -1,4 +1,4 @@
-export default class ProductList {
+export default class State {
   constructor() {
     this.products = [];
   }
