@@ -1,0 +1,154 @@
+* {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+.widget {
+  font-size: 1rem;
+  width: 40vw;
+  height: 60vh;
+  min-width: 315px;
+  background-image: url('https://abrakadabra.fun/uploads/posts/2022-03/1646666103_8-abrakadabra-fun-p-fon-dlya-vidzheta-12.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  border: 1px solid grey;
+  border-radius: 10px;
+  color: #fff;
+  margin: 20px auto;
+  padding: 20px;
+  position: relative;
+}
+
+.header {
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.widget-title {
+  font-size: inherit;
+}
+
+.btn-add {
+  font-size: inherit;
+  border: 1px solid #5db7ec;
+  border-radius: 50%;
+  padding: revert;
+  background-color: #5db7ec;
+  color: #fff;
+}
+
+.btn-add:hover, .btn-popup:hover {
+  background-color: orange;
+}
+
+.product-list {
+  margin-top: 10px;
+}
+
+.list-header {
+  font-weight: bold;
+  background-color: orange;
+  border-radius: 10px;
+  margin-bottom: 5px;
+}
+
+.products {
+  background-color: green;
+  border-radius: 10px;
+}
+
+.list-header, .product {
+  display: flex;
+  justify-content: space-around;
+}
+
+.cell {
+  padding: 5px;
+}
+
+.product-name {
+  min-width: 100px;
+  flex: 2;
+}
+
+.product-price {
+  flex: 1;
+}
+
+.product-action {
+  flex: 1;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.product-action-wrap {
+  height: 20px;
+}
+
+.product-action-img {
+  height: 20px;
+}
+
+.edit:hover, .delete:hover {
+  height: 25px;
+}
+
+.popup {
+  background-color: #5db7ec;
+  border-radius: 10px;
+  padding: 20px;
+  position: absolute;
+  top: 15%;
+  left: 3%;
+  right: 3%;
+}
+
+.popup-block {
+  margin-bottom: 30px;
+}
+
+.input {
+  width: 100%;
+  border: none;
+  border-radius: 10px;
+  margin-top: 5px;
+  padding: 8px;
+  font-size: 0.9rem;
+}
+
+.input:focus {
+  outline: 1px solid #5b66b5;
+}
+
+.popup-footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn-popup {
+  width: 30%;
+  min-width: 90px;
+  background-color: #fff;
+  color: #333;
+  border: none;
+  border-radius: 10px;
+  padding: 5px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.btn-popup:nth-child(n+2) {
+  margin-left: 20px;
+}
+
+.tooltip {
+  color: red;
+  position: absolute;
+}
+
+
+/*# sourceMappingURL=main.css.map*/
