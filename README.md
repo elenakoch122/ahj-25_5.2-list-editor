@@ -2,7 +2,7 @@
 
 [![Build status](https://ci.appveyor.com/api/projects/status/o3vi83a9048hyy3a?svg=true)](https://ci.appveyor.com/project/elenakoch122/ahj-25-5-2-list-editor)
 
-GitHub Pages: 
+GitHub Pages:  https://elenakoch122.github.io/ahj-25_5.2-list-editor/
 
 ### Редактор списка* (задача со звёздочкой)
 
